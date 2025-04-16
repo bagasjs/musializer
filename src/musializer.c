@@ -26,7 +26,7 @@ int main(void)
     if (!reload_libplug()) return 1;
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_ALWAYS_RUN);
-    size_t factor = 80;
+    size_t factor = 60;
     InitWindow(factor*16, factor*9, "Musializer");
     {
         const char *file_path = "./resources/logo/logo-256.png";

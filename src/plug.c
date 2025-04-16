@@ -1465,6 +1465,16 @@ static void preview_screen(void)
 
     Track *track = current_track();
     if (track) { // The music is loaded and ready
+#define APPROPRIATE_SKIP_DISTANCE 0.02f
+        if(GetMusicTimePlayed(track->music) + APPROPRIATE_SKIP_DISTANCE >= GetMusicTimeLength(track->music)) {
+            int prev_track = p->current_track;
+            p->current_track = (p->current_track + 1) % p->tracks.count;
+            if(prev_track != p->current_track) {
+                StopMusicStream(track->music);
+                track = current_track();
+                PlayMusicStream(track->music);
+            }
+        }
         UpdateMusicStream(track->music);
 
         if (IsKeyPressed(KEY_TOGGLE_PLAY)) {
