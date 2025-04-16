@@ -64,7 +64,11 @@ int main(int argc, char **argv)
     if (!generate_config_logger("build/config_logger.c")) return 1;
 
     Nob_Cmd cmd = {0};
+#ifdef _WIN32
+    const char *stage2_binary = "build/nob_stage2.exe";
+#else
     const char *stage2_binary = "build/nob_stage2";
+#endif
     nob_cmd_append(&cmd, NOB_REBUILD_URSELF(stage2_binary, "./src_build/nob_stage2.c"));
     if (!nob_cmd_run_sync(cmd)) return 1;
 

@@ -28,6 +28,8 @@ static const char *raylib_modules[] = {
 #include "nob_macos.c"
 #elif defined(MUSIALIZER_TARGET_WIN64_MINGW)
 #include "nob_win64_mingw.c"
+#elif defined(MUSIALIZER_TARGET_WIN64_CLANG)
+#include "nob_win64_clang.c"
 #elif defined(MUSIALIZER_TARGET_WIN64_MSVC)
 #include "nob_win64_msvc.c"
 #elif defined(MUSIALIZER_TARGET_OPENBSD)

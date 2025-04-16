@@ -25,8 +25,16 @@ static Target_Flag target_flags[] = {
         #endif
     },
     {
+        .macro = "MUSIALIZER_TARGET_WIN64_CLANG",
+        #if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER) && defined(__clang__)
+            .enabled_by_default = true,
+        #else
+            .enabled_by_default = false,
+        #endif
+    },
+    {
         .macro = "MUSIALIZER_TARGET_WIN64_MSVC",
-        #if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER)
+        #if (defined(WIN32) || defined(_WIN32)) && defined(_MSC_VER) && !defined(__clang__)
             .enabled_by_default = true,
         #else
             .enabled_by_default = false,
