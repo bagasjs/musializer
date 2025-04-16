@@ -1,6 +1,10 @@
 // Copied from nob_win64_msvc
 #define MUSIALIZER_TARGET_NAME "win64-clang"
 
+// Enable this flag if you want to have the terminal 
+// while running musializer
+// #define CONSOLE_MODE
+
 bool build_musializer(void)
 {
     bool result = true;
@@ -18,7 +22,7 @@ bool build_musializer(void)
     procs.count = 0;
             cmd.count = 0;
                 nob_cmd_append(&cmd, "clang");
-                nob_cmd_append(&cmd, "-mwindows", "-Wall", "-Wextra", "-ggdb");
+                nob_cmd_append(&cmd, "-Wall", "-Wextra", "-ggdb");
                 nob_cmd_append(&cmd, "-I.");
                 nob_cmd_append(&cmd, "-I"RAYLIB_SRC_FOLDER);
                 nob_cmd_append(&cmd, "-fPIC", "-shared");
@@ -36,7 +40,7 @@ bool build_musializer(void)
 
             cmd.count = 0;
                 nob_cmd_append(&cmd, "clang");
-                nob_cmd_append(&cmd, "-mwindows", "-Wall", "-Wextra", "-ggdb");
+                nob_cmd_append(&cmd, "-Wall", "-Wextra", "-ggdb");
                 nob_cmd_append(&cmd, "-I.");
                 nob_cmd_append(&cmd, "-I"RAYLIB_SRC_FOLDER);
                 nob_cmd_append(&cmd, "-o", "./build/musializer.exe");
@@ -59,6 +63,9 @@ bool build_musializer(void)
     cmd.count = 0;
         nob_cmd_append(&cmd, "clang");
         nob_cmd_append(&cmd, "-Wall", "-Wextra", "-ggdb");
+        #ifndef CONSOLE_MODE
+        nob_cmd_append(&cmd, "-Wl,/SUBSYSTEM:WINDOWS,/ENTRY:mainCRTStartup");
+        #endif
         nob_cmd_append(&cmd, "-I.");
         nob_cmd_append(&cmd, "-I"RAYLIB_SRC_FOLDER);
         nob_cmd_append(&cmd, "-o", "./build/musializer.exe");
