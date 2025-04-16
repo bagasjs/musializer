@@ -1,7 +1,8 @@
 // Copied from nob_win64_msvc
 #define MUSIALIZER_TARGET_NAME "win64-clang"
 
-#define CONSOLE_MODE
+// If you want the console in Windows enable this
+// #define CONSOLE_MODE
 
 bool build_musializer(void)
 {
